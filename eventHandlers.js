@@ -5,9 +5,6 @@ exports.sendEvent = null;
 exports.registerEventHandlers = function (source) {
     source.addEventListener('MyEvent', handleMyEvent);
     // Register more event handlers here
-    //source.addEventListener('UP', handleUp);
-    //source.addEventListener('DOWN', handleDown);
-    //source.addEventListener('Reps:', handleReps);
 }
 
 function handleMyEvent(event) {
@@ -28,9 +25,7 @@ function handleMyEvent(event) {
         // TODO: do something meaningful with the data
 
         // Log the event in the database
-        logger.logOne("MyDB", "MyEvent", data);
-        //logger.logOne("MyDB", "DOWN", data);
-        //logger.logOne("MyDB", "Reps:", data);
+        // logger.logOne("MyDB", "MyEvent", data);
 
         // send data to all connected clients
         exports.sendEvent(data);
