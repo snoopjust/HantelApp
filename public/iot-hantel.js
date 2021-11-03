@@ -17,9 +17,12 @@ initSSE();
 function updateVariables(data) {
     // update the html elements
     document.getElementById("lastevent").innerHTML = JSON.stringify(data);
-    if (data.eventName === "MyEvent") {
-        document.getElementById("counterevent").innerHTML = data.eventData;
+    if (data.eventName === "Wiederholungen pro Minute:") {
+        document.getElementById("RepPerMinute").innerHTML = data.eventData;
     }
+    // if (data.eventName === "Durchschnittliche Kadenz:") {
+    //     document.getElementById("AverageRep").innerHTML = data.eventData;
+    // }
 }
 
 async function setCounter() {
@@ -40,4 +43,13 @@ async function getCounter() {
 
     // update the html element
     document.getElementById("counter").innerHTML = counter;
+
+}
+async function getReps() {
+    // request the variable "reps"
+    var response = await axios.get(rootUrl + "/api/device/0/variable/reps");
+    var counter = response.data.result;
+
+    // update the html element
+    document.getElementById("reps").innerHTML = counter;
 }
