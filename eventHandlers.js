@@ -4,6 +4,12 @@ exports.sendEvent = null;
 
 exports.registerEventHandlers = function (source) {
     source.addEventListener('MyEvent', handleMyEvent);
+    source.addEventListener('Training has started', handleTrainingStarted);
+    source.addEventListener('Training has stopped or not started yet!', handleTrainingEnded);
+    source.addEventListener('Anzahl Repetitionen im Training:', handleNumberRep);
+    source.addEventListener('Durchschnittliche Kadenz:', handleAverageRep);
+    source.addEventListener('Wiederholungen pro Minute:', handleRepPerMinute);
+    
     // Register more event handlers here
 }
 
@@ -34,3 +40,144 @@ function handleMyEvent(event) {
         console.log(error)
     }
 }
+
+function handleTrainingStarted(event) {
+    // read variables from the event
+    var data = {
+        eventName: event.type,
+        eventData: JSON.parse(event.data).data, // the value of the event
+        deviceId: JSON.parse(event.data).coreid,
+        timestamp: JSON.parse(event.data).published_at
+    };
+
+    //var datetime = new Date(data.timestamp); // convert the timestamp to a Date object
+
+    try {        
+        // you can add more properties to your data object
+        //data.myMessage = "Hello World";
+
+        // TODO: do something meaningful with the data
+
+        // Log the event in the database
+        logger.logOne("MyDB", "Training has started", data);
+
+        // send data to all connected clients
+        exports.sendEvent(data);
+    } catch (error) {
+        console.log("Could not handle event: " + JSON.stringify(event) + "\n");
+        console.log(error)
+    }
+}
+
+function handleTrainingEnded(event) {
+    // read variables from the event
+    var data = {
+        eventName: event.type,
+        eventData: JSON.parse(event.data).data, // the value of the event
+        deviceId: JSON.parse(event.data).coreid,
+        timestamp: JSON.parse(event.data).published_at
+    };
+
+    //var datetime = new Date(data.timestamp); // convert the timestamp to a Date object
+
+    try {        
+        // you can add more properties to your data object
+        //data.myMessage = "Hello World";
+
+        // TODO: do something meaningful with the data
+
+        // Log the event in the database
+        logger.logOne("MyDB", "Training has stopped or not started yet!", data);
+
+        // send data to all connected clients
+        exports.sendEvent(data);
+    } catch (error) {
+        console.log("Could not handle event: " + JSON.stringify(event) + "\n");
+        console.log(error)
+    }
+}
+
+function handleNumberRep(event) {
+    // read variables from the event
+    var data = {
+        eventName: event.type,
+        eventData: JSON.parse(event.data).data, // the value of the event
+        deviceId: JSON.parse(event.data).coreid,
+        timestamp: JSON.parse(event.data).published_at
+    };
+
+    //var datetime = new Date(data.timestamp); // convert the timestamp to a Date object
+
+    try {        
+        // you can add more properties to your data object
+        //data.myMessage = "Hello World";
+
+        // TODO: do something meaningful with the data
+
+        // Log the event in the database
+        logger.logOne("MyDB", "Anzahl Repetitionen im Training:", data);
+
+        // send data to all connected clients
+        exports.sendEvent(data);
+    } catch (error) {
+        console.log("Could not handle event: " + JSON.stringify(event) + "\n");
+        console.log(error)
+    }
+}
+
+function handleAverageRep(event) {
+    // read variables from the event
+    var data = {
+        eventName: event.type,
+        eventData: JSON.parse(event.data).data, // the value of the event
+        deviceId: JSON.parse(event.data).coreid,
+        timestamp: JSON.parse(event.data).published_at
+    };
+
+    //var datetime = new Date(data.timestamp); // convert the timestamp to a Date object
+
+    try {        
+        // you can add more properties to your data object
+        //data.myMessage = "Hello World";
+
+        // TODO: do something meaningful with the data
+
+        // Log the event in the database
+        logger.logOne("MyDB", "Durchschnittliche Kadenz:", data);
+
+        // send data to all connected clients
+        exports.sendEvent(data);
+    } catch (error) {
+        console.log("Could not handle event: " + JSON.stringify(event) + "\n");
+        console.log(error)
+    }
+}
+
+function handleRepPerMinute(event) {
+    // read variables from the event
+    var data = {
+        eventName: event.type,
+        eventData: JSON.parse(event.data).data, // the value of the event
+        deviceId: JSON.parse(event.data).coreid,
+        timestamp: JSON.parse(event.data).published_at
+    };
+
+    //var datetime = new Date(data.timestamp); // convert the timestamp to a Date object
+
+    try {        
+        // you can add more properties to your data object
+        //data.myMessage = "Hello World";
+
+        // TODO: do something meaningful with the data
+
+        // Log the event in the database
+        logger.logOne("MyDB", "Wiederholungen pro Minute:", data);
+
+        // send data to all connected clients
+        exports.sendEvent(data);
+    } catch (error) {
+        console.log("Could not handle event: " + JSON.stringify(event) + "\n");
+        console.log(error)
+    }
+}
+
