@@ -16,9 +16,21 @@ initSSE();
 
 function updateVariables(data) {
     // update the html elements
-    document.getElementById("lastevent").innerHTML = JSON.stringify(data);
-    if (data.eventName === "Wiederholungen pro Minute:") {
-        document.getElementById("RepPerMinute").innerHTML = data.eventData;
+    //document.getElementById("lastevent").innerHTML = JSON.stringify(data);
+    if (data.eventName === "Wiederholungen_pro_Minute") {
+        document.getElementById("repperminute").innerHTML = data.eventData;
+    }
+    if (data.eventName === "Training_has_started") {
+        document.getElementById("trainingstatus").innerHTML = data.eventData;
+    }
+    if (data.eventName === "Training_has_stopped") {
+        document.getElementById("trainingstatus").innerHTML = data.eventData;
+    }
+    if (data.eventName === "Anzahl_Repetitionen_im_Training") {
+        document.getElementById("repspertraining").innerHTML = data.eventData;
+    }
+    if (data.eventName === "Durchschnittliche_Kadenz") {
+        document.getElementById("averagekadenz").innerHTML = data.eventData;
     }
     // if (data.eventName === "Durchschnittliche Kadenz:") {
     //     document.getElementById("AverageRep").innerHTML = data.eventData;

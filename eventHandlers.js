@@ -3,12 +3,12 @@ const logger = require('./db/logger.js');
 exports.sendEvent = null;
 
 exports.registerEventHandlers = function (source) {
-    source.addEventListener('MyEvent', handleMyEvent);
-    source.addEventListener('Training has started', handleTrainingStarted);
-    source.addEventListener('Training has stopped or not started yet!', handleTrainingEnded);
-    source.addEventListener('Anzahl Repetitionen im Training:', handleNumberRep);
-    source.addEventListener('Durchschnittliche Kadenz:', handleAverageRep);
-    source.addEventListener('Wiederholungen pro Minute:', handleRepPerMinute);
+    source.addEventListener('My_Event', handleMyEvent);
+    source.addEventListener('Training_has_started', handleTrainingStarted);
+    source.addEventListener('Training_has_stopped', handleTrainingEnded);
+    source.addEventListener('Anzahl_Repetitionen_im_Training', handleNumberRep);
+    source.addEventListener('Durchschnittliche_Kadenz', handleAverageRep);
+    source.addEventListener('Wiederholungen_pro_Minute', handleRepPerMinute);
     
     // Register more event handlers here
 }
@@ -31,7 +31,7 @@ function handleMyEvent(event) {
         // TODO: do something meaningful with the data
 
         // Log the event in the database
-        logger.logOne("MyDB", "MyEvent", data);
+        logger.logOne("MyDB", "My_Event", data);
 
         // send data to all connected clients
         exports.sendEvent(data);
@@ -59,7 +59,7 @@ function handleTrainingStarted(event) {
         // TODO: do something meaningful with the data
 
         // Log the event in the database
-        logger.logOne("MyDB", "Training has started", data);
+        logger.logOne("MyDB", "Training_has_started", data);
 
         // send data to all connected clients
         exports.sendEvent(data);
@@ -87,7 +87,7 @@ function handleTrainingEnded(event) {
         // TODO: do something meaningful with the data
 
         // Log the event in the database
-        logger.logOne("MyDB", "Training has stopped or not started yet!", data);
+        logger.logOne("MyDB", "Training_has_stopped", data);
 
         // send data to all connected clients
         exports.sendEvent(data);
@@ -115,7 +115,7 @@ function handleNumberRep(event) {
         // TODO: do something meaningful with the data
 
         // Log the event in the database
-        logger.logOne("MyDB", "Anzahl Repetitionen im Training:", data);
+        logger.logOne("MyDB", "Anzahl_Repetitionen_im_Training", data);
 
         // send data to all connected clients
         exports.sendEvent(data);
@@ -143,7 +143,7 @@ function handleAverageRep(event) {
         // TODO: do something meaningful with the data
 
         // Log the event in the database
-        logger.logOne("MyDB", "Durchschnittliche Kadenz:", data);
+        logger.logOne("MyDB", "Durchschnittliche_Kadenz", data);
 
         // send data to all connected clients
         exports.sendEvent(data);
@@ -171,7 +171,7 @@ function handleRepPerMinute(event) {
         // TODO: do something meaningful with the data
 
         // Log the event in the database
-        logger.logOne("MyDB", "Wiederholungen pro Minute:", data);
+        logger.logOne("MyDB", "Wiederholungen_pro_Minute", data);
 
         // send data to all connected clients
         exports.sendEvent(data);
